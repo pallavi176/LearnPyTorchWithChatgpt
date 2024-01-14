@@ -1,0 +1,55 @@
+PyTorch is a powerful library for building and training neural networks, and these two concepts are foundational.
+
+Tensors in PyTorch
+Tensors are a specialized data structure that are very similar to arrays and matrices. 
+In PyTorch, we use tensors to encode the inputs and outputs of a model, as well as the model’s parameters.
+
+Creating Tensors
+python
+Copy code
+import torch
+
+# Create a tensor of size 2x3 filled with zeros
+tensor_a = torch.zeros(2, 3)
+
+# Create a tensor from a list
+tensor_b = torch.tensor([1, 2, 3])
+
+# Create a random tensor
+tensor_c = torch.rand(2, 3)
+Tensor Operations
+You can perform a variety of operations on tensors, such as addition, multiplication, and linear algebra operations.
+
+python
+Copy code
+# Add two tensors
+result = tensor_a + tensor_c
+
+# Multiply tensors element-wise
+result = tensor_a * tensor_c
+
+# Matrix multiplication
+result = torch.matmul(tensor_a, tensor_c.t())  # .t() is for transpose
+Autograd: Automatic Differentiation
+Autograd is PyTorch’s automatic differentiation engine that powers neural network training. 
+It tracks all operations on tensors. When you finish your computation, you can call .backward() 
+and have all the gradients computed automatically.
+
+Example of Autograd
+python
+Copy code
+# Create tensors with requires_grad=True to track computation
+x = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
+y = torch.tensor([4.0, 5.0, 6.0], requires_grad=True)
+
+# Perform a simple computation
+z = x * y
+
+# Compute gradients
+z.backward(torch.tensor([1.0, 1.0, 1.0]))
+
+# Print gradients
+print(x.grad)  # dz/dx
+print(y.grad)  # dz/dy
+In this example, z is a tensor on which we perform an operation. Since x and y are created with requires_grad=True, 
+PyTorch will automatically calculate the gradients of z with respect to x and y.
